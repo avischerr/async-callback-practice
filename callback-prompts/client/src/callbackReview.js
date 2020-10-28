@@ -11,9 +11,9 @@ const REPLACE_ME = () => {};
  * Refactor the following function so that it takes a second parameter, callback,
  * and instead of returning the result, invokes the callback with the result as a parameter.
  */
-const findHalfWordLength = (word) => {
+const findHalfWordLength = (word, callback) => {
   let halfWordLength = Math.floor(word.length / 2);
-  return halfWordLength;
+  callback(halfWordLength);
 };
 
 /*
@@ -40,8 +40,25 @@ findHalfWordLength("callback", print);
  *
  * Pass your results into the callback as we did before.
  */
-const arraySummer = (FILL_ME_IN) => {
-  // FILL_ME_IN
+const arraySummer = (arr, callback) => {
+  // declare sum variable
+  var sum = 0;
+
+  // iterate over array
+  for (var i = 0; i < arr.length; i++) {
+    // if index is even,
+    if (i % 2 === 0) {
+      // add to sum
+      sum += arr[i];
+      // else,
+    } else {
+      // subtract from sum
+      sum -= arr[i];
+    }
+  }
+
+  // return sum via callback
+  callback(sum);
 };
 
 /////////////////////////////////
@@ -91,23 +108,23 @@ const createMessage = (callback) => {
     message += '"What?"\n';
   };
 
-  setTimeout(REPLACE_ME, 12);
-  setTimeout(REPLACE_ME, 17);
-  setTimeout(REPLACE_ME, 21);
-  setTimeout(REPLACE_ME, 31);
-  setTimeout(REPLACE_ME, 14);
-  setTimeout(REPLACE_ME, 25);
-  setTimeout(REPLACE_ME, 33);
+  setTimeout(addGreeting, 12);
+  setTimeout(iDontKnowThem, 17);
+  setTimeout(introduceYourself, 21);
+  setTimeout(introduceYourself, 31);
+  setTimeout(introduceYourself, 14);
+  setTimeout(iDidntHearYou, 25);
+  setTimeout(theRealSlim, 33);
 
   // You should recognize this method of wrapping a function from precourse.  In this case, the wrapper
   // function is actually the callback of this setTimeout invocation, and it will run whatever else you put inside!
-  setTimeout(() => {
-    REPLACE_ME;
+  setTimeout((createMessage) => {
+    callback(message);
   }, 35);
 };
 
 /* This should let us see the result of plugging in all the callbacks on our console. Uncomment it if you're getting stuck! */
-// createMessage(print);
+createMessage(print);
 
 /* !!!!!!!!!!!!!!!!!!! EXTRA PRACTICE !!!!!!!!!!!!!!!!!!!
  * If at this point you feel you have a solid understanding of callbackReview, feel free to move directly into the next portion
@@ -138,8 +155,23 @@ const createMessage = (callback) => {
  *
  * makeDigitArray should invoke the callback function with the generated array passed as an argument.
  */
-const makeDigitArray = (FILL_ME_IN) => {
-  // FILL_ME_IN
+const makeDigitArray = (num, callback) => {
+  // declare result array
+  var result;
+
+  // turn num into string
+  num = String(num);
+  // split the string into result array
+  result = num.split('');
+
+  // for loop over array
+  for (var i = 0; i < result.length; i++) {
+    // each item = parse int of the item
+    result[i] = parseInt(result[i]);
+  }
+
+  // return result array via callback
+  callback(result);
 };
 
 /*
@@ -161,6 +193,32 @@ const makeDigitArray = (FILL_ME_IN) => {
  * 00000
  *
  */
-const pyramidBuilder = (FILL_ME_IN) => {
-  // FILL_ME_IN
+const pyramidBuilder = (num, callback) => {
+  // if num is less than zero
+  if (num < 0) {
+    // "You don't get a pyramid!" via callback
+    callback("You don't get a pyramid!");
+  }
+
+  // declare output string
+  var output = "";
+
+  // create a loop from i = 1 to i = num
+  for (var i = 1; i <= num; i++) {
+    // add \n + 0 times i to output
+    output += "\n"
+    for (var j = 1; j <= i; j++) {
+      output += "0"
+    }
+  }
+
+  // return output via callback
+  callback(output);
 };
+
+/**
+ * O - pyramid of zeros with base = num zeros via callback or you don't get a pyramid
+ * I - number and callback
+ * C - none
+ * E - num is less than zero
+ */

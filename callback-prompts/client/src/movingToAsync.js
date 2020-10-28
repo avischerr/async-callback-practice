@@ -18,17 +18,17 @@ const errorLogger = (err) => {
  */
 const getAll = () => {
   $.ajax({
-    type: FILL_ME_IN,
+    type: 'GET',
     url: "http://127.0.0.1:3000/getAll",
     contentType: "application/json",
-    success: FILL_ME_IN,
-    error: FILL_ME_IN,
+    success: getAllCallback,
+    error: errorLogger
   });
 };
 
 const getAllCallback = (data) => {
   const messages = JSON.parse(data);
-  console.log(FILL_ME_IN);
+  console.log(messages);
 };
 
 /* ========== getOne ========== /
@@ -39,16 +39,18 @@ const getAllCallback = (data) => {
  */
 const getOne = (id) => {
   $.ajax({
-    /* FILL_ME_IN */
+    type: 'GET',
     url: "http://127.0.0.1:3000/getOne",
     contentType: "application/json",
-    data: FILL_ME_IN,
-    /* FILL_ME_IN */
+    data: id,
+    success: getOneCallback,
+    error: errorLogger
   });
 };
 
 const getOneCallback = (data) => {
-  /* FILL_ME_IN */
+  const message = JSON.parse(data);
+  console.log(message)
 };
 
 /* Write the rest of the functions below in the style of those above. Do not copy and paste from the above functions!

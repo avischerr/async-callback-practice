@@ -70,15 +70,15 @@ describe("Callback Review", () => {
   });
 
   describe("makeDigitArray", () => {
-    xit("should be a function", () => {
+    it("should be a function", () => {
       expect(makeDigitArray).to.be.a("function");
     });
-    xit("should invoke the callback function", () => {
+    it("should invoke the callback function", () => {
       const callback = sinon.spy();
       makeDigitArray(0, callback);
       expect(callback.calledOnce).to.equal(true);
     });
-    xit("should pass the callback function the correctly generated array", () => {
+    it("should pass the callback function the correctly generated array", () => {
       const callback = sinon.spy();
       makeDigitArray(7134, callback);
       expect(callback.args[0][0]).to.eql([7, 1, 3, 4]);
@@ -86,25 +86,25 @@ describe("Callback Review", () => {
   });
 
   describe("pyramidBuilder", () => {
-    xit("should be a function", () => {
+    it("should be a function", () => {
       expect(pyramidBuilder).to.be.a("function");
     });
-    xit("should invoke the callback function", () => {
+    it("should invoke the callback function", () => {
       const callback = sinon.spy();
       pyramidBuilder(0, callback);
       expect(callback.called).to.equal(true);
     });
-    xit("should return an empty string when passed 0", () => {
+    it("should return an empty string when passed 0", () => {
       const callback = sinon.spy();
       pyramidBuilder(0, callback);
       expect(callback.args[0][0]).to.equal("");
     });
-    xit("should handle negative inputs correctly", () => {
+    it("should handle negative inputs correctly", () => {
       const callback = sinon.spy();
       pyramidBuilder(-5, callback);
       expect(callback.args[0][0]).to.equal("You don't get a pyramid!");
     });
-    xit("should pass correctly constructed pyramids to the callback function", () => {
+    it("should pass correctly constructed pyramids to the callback function", () => {
       const callback = sinon.spy();
       pyramidBuilder(5, callback);
       expect(callback.args[0][0]).to.equal("\n0\n00\n000\n0000\n00000");
